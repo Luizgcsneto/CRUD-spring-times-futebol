@@ -10,6 +10,8 @@ import com.time.crudspringtime.dto.TimeDto;
 import com.time.crudspringtime.dto.mapper.TimeMapper;
 import com.time.crudspringtime.exception.RecordNotFoundException;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,7 @@ public class TimeService {
         .collect(Collectors.toList());
     }
 
+
     public TimeDto findById(@PathVariable @Positive Long id)
     {
         return timeRepository.findById(id).map(timeMapper::toDto)
@@ -51,6 +54,7 @@ public class TimeService {
             time.setNome(timeDto.nome());
             time.setEstado(timeDto.estado());
             time.setCores(timeDto.cores());
+            time.setDataAtualizacao(LocalDateTime.now(ZoneId.of("GMT-3")));
             return timeMapper.toDto(timeRepository.save(time));
         }).orElseThrow(() -> new RecordNotFoundException(id));
     }

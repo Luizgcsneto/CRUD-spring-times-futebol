@@ -1,5 +1,8 @@
 package com.time.crudspringtime.dto.mapper;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 import org.springframework.stereotype.Component;
 
 import com.time.crudspringtime.dto.TimeDto;
@@ -29,6 +32,7 @@ public class TimeMapper {
         time.setNome(timeDto.nome());
         time.setEstado(timeDto.estado());
         time.setCores(timeDto.cores());
+        time.setDataRegistro(LocalDateTime.now(ZoneId.of("GMT-3")));
 
         return time;
     }

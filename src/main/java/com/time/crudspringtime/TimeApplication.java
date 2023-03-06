@@ -1,5 +1,8 @@
 package com.time.crudspringtime;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +27,7 @@ public class TimeApplication {
 			time.setNome("Flamengo");
 			time.setEstado("Rio de Janeiro");
 			time.setCores("Rubro-negro");
+			time.setDataRegistro(LocalDateTime.now(ZoneId.of("GMT-3")));
 			timeRepository.save(time);
 		};
 	}
